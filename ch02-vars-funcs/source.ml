@@ -67,3 +67,30 @@ let rec is_even x =
   if x = 0 then true else is_odd (x - 1)
 and is_odd x =
   if x = 0 then false else is_even (x - 1)
+
+(* we can define infix operator using specialized char, as long as not
+ * started with ~, !, or $.
+ * Example: simple vector addition *)
+let (+!) (x1,y1) (x2,y2) = (x1+x2, y1+y2)
+let ( *** ) x y = (x **. y) **. y
+
+(* |> is reverse application operator, while @@ is application operator
+ * let (|>) x f =  f x  
+ * f (g (h x)) ==  f @@ g @@ h x *)
+
+(* Declaring functions with function keyword *)
+let some_or_zero = function
+    | Some x -> x
+    | None -> 0
+
+(* the equivalent*)
+let some_or_zero' num_opt =
+    match num_opt with
+      | Some x -> x
+      | None -> 0
+
+(* with multiple arguments *)
+let some_or_default default = function
+    | Some x -> x
+    | None -> default
+
