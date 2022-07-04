@@ -94,3 +94,53 @@ let some_or_default default = function
     | Some x -> x
     | None -> default
 
+(* Labeled arguments *)
+let ratio ~num ~denom = Float.of_int num /. Float.of_int denom
+
+(* the order of labeled arguments in higher order function matters *)
+let apply_to_tupple f (first,second) = f ~first ~second
+let apply_to_tupple' f (first,second) = f ~second ~first
+
+let divide ~first ~second = first / second
+
+(* we can run this:
+    apply_to_tuple divide (3,4)
+
+   but not this since it has different ordering:
+    apply_to_tuple' divide (3,4) 
+*)
+
+(* Optional arguments
+ 
+    Use ? to indicate optional arguments
+*)
+let concat ?sep x y = (* sep is optional for separating values *)
+    let sep = match sep with None -> "" | Some s -> s in
+    x ^ sep ^ y
+
+(* optional argument with default value *)
+let concat' ?(sep="") x y = x ^ sep ^ y
+
+(* when to use optional arguments?
+    - rarely used functions should not have optional arguments 
+    - avoid optional arguments for functions internal to a module
+*)
+
+(* Optional argument is erased as soon as the first positional
+    (neither labeled nor optional) argument defined after the optional 
+    argument is passed in. 
+*)
+
+let uppercase_concat ?sep a b = concat ?sep (String.uppercase a) b
+
+(* this function computes the derivative of a function.
+    the types in this function are inferred 
+*)
+let numeric_deriv ~delta ~x ~y ~f =
+    let x' = x +. delta in
+    let y' = y +. delta in
+    let base = f ~x ~y in
+    let dx = (f ~x:x' ~y -. base) /. delta in
+    let dy = (f ~x ~y:y' -. base) /. delta in
+    (dx,dy)
+
