@@ -41,11 +41,10 @@ let distance (x1,y1) (x2,y2) =
     Float.sqrt ((x1 -. x2) **. 2. +. (y1 -. y2) **. 2.)
 
 (* List *)
-(* let languages = ["OCaml"; "Perl"; "C"]
-List.length languages
+let languages = ["OCaml"; "Perl"; "C"]
+(* List.length languages *)
 
-List.map languages ~f:String.length
-*)
+(* List.map languages ~f:String.length *)
 
 (* Pattern matching *)
 (* non-exhaustive *)
