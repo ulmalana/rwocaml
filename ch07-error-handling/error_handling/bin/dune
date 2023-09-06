@@ -1,4 +1,4 @@
 (executable
  (public_name error_handling)
  (name main)
- (libraries error_handling base ppx_jane ppx_let))
+ (libraries error_handling base ppx_jane ppx_let stdio))
