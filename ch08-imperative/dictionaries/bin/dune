@@ -1,0 +1,4 @@
+(executable
+ (public_name dictionaries)
+ (name dict)
+ (libraries dictionaries base))
