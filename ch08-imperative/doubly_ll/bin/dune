@@ -1,0 +1,4 @@
+(executable
+ (public_name doubly_ll)
+ (name main)
+ (libraries doubly_ll base))
